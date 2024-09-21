@@ -18,7 +18,7 @@ resource_dirs = [  # top takes priority
 export_dir = "src/hexdoc_hexweb/_export/generated"
 
 [template]
-icon = "logo.webp"
+icon = "icon.png"
 include = [
     "hexweb",
     "hexcasting",
