@@ -12,7 +12,7 @@
     "sources": "https://github.com/FabricMC/fabric-example-mod"
   },
   "license": "MIT License",
-  "icon": "assets/hexweb/icon.png",
+  "icon": "assets/hexweb/logo.webp",
   "environment": "*",
   "entrypoints": {
     "main": [
