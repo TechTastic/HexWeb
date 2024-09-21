@@ -11,7 +11,7 @@ authors = "TechTastic"
 description = '''
 A Hexcasting Addon for Web interaction!
 '''
-#logoFile = ""
+logoFile = "logo.webp"
 
 [[dependencies.hexweb]]
 modId = "forge"
