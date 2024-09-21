@@ -20,6 +20,14 @@
     },
     {
       "type": "hexcasting:pattern",
+      "op_id": "hexweb:has_element",
+      "anchor": "hexweb:has_element",
+      "input": "json, str",
+      "output": "bool",
+      "text": "hexweb.page.json_patterns.has_element"
+    },
+    {
+      "type": "hexcasting:pattern",
       "op_id": "hexweb:get_element",
       "anchor": "hexweb:get_element",
       "input": "json, str",

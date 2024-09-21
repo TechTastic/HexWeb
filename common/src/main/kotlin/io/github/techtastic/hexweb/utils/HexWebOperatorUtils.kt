@@ -4,10 +4,17 @@ import at.petrak.hexcasting.api.casting.iota.*
 import at.petrak.hexcasting.api.casting.mishaps.MishapInvalidIota
 import at.petrak.hexcasting.api.casting.mishaps.MishapNotEnoughArgs
 import com.google.gson.*
+import io.github.techtastic.hexweb.HexWeb.responses
 import io.github.techtastic.hexweb.casting.iota.ConnectionIota
 import io.github.techtastic.hexweb.casting.iota.JsonIota
+import io.github.techtastic.hexweb.casting.iota.ResponseIota
 import io.github.techtastic.hexweb.casting.mishap.MishapCannotJson
+import io.github.techtastic.hexweb.casting.mishap.MishapIOException
+import io.github.techtastic.hexweb.casting.mishap.MishapTooEarly
+import okhttp3.Response
+import okio.IOException
 import ram.talia.moreiotas.api.casting.iota.StringIota
+import java.util.*
 
 object HexWebOperatorUtils {
     fun List<Iota>.getConnection(idx: Int, argc: Int): ConnectionIota.Connection {
@@ -26,6 +33,24 @@ object HexWebOperatorUtils {
             if (iota is JsonIota)
                 return iota.getPayload()
             throw MishapInvalidIota.ofType(iota, if (argc == 0) idx else argc - (idx + 1), "json")
+        }
+        throw MishapNotEnoughArgs(idx + 1, this.size)
+    }
+
+    fun List<Iota>.getResponse(idx: Int, argc: Int): Response {
+        if (idx >= 0 && idx <= this.lastIndex) {
+            val iota = this.get(idx)
+            if (iota is ResponseIota) {
+                val either = responses[iota.getPayload()] ?: throw MishapTooEarly()
+                if (either.right().isPresent)
+                    throw MishapIOException(either.right().get())
+                return try {
+                    either.left().orElseThrow()
+                } catch (ignored: Exception) {
+                    throw MishapTooEarly()
+                }
+            }
+            throw MishapInvalidIota.ofType(iota, if (argc == 0) idx else argc - (idx + 1), "response")
         }
         throw MishapNotEnoughArgs(idx + 1, this.size)
     }

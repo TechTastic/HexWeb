@@ -15,8 +15,16 @@
       "op_id": "hexweb:request",
       "anchor": "hexweb:request",
       "input": "conn, json, str, str",
-      "output": "json",
+      "output": "res",
       "text": "hexweb.page.http_spells.request"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexweb:parse_response",
+      "anchor": "hexweb:parse_response",
+      "input": "res",
+      "output": "json",
+      "text": "hexweb.page.http_spells.parse_response"
     }
   ]
 }

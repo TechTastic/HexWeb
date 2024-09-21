@@ -63,6 +63,10 @@ object HexWebActions {
         HexPattern.fromAngles("edadeedd", HexDir.NORTH_WEST),
         OpGetElement
     )}
+    val HAS_ELEMENT = ACTIONS.register("has_element") { ActionRegistryEntry(
+        HexPattern.fromAngles("edadee", HexDir.NORTH_WEST),
+        OpGetElement
+    )}
 
 
     // HTTP
@@ -70,6 +74,10 @@ object HexWebActions {
     val REQUEST = ACTIONS.register("request") { ActionRegistryEntry(
         HexPattern.fromAngles("qqqqwqdqddqe", HexDir.NORTH_EAST),
         OpRequest
+    )}
+    val PARSE_RESPONSE = ACTIONS.register("parse_response") { ActionRegistryEntry(
+        HexPattern.fromAngles("qqqqwweaaead", HexDir.NORTH_EAST),
+        OpParseResponse
     )}
 
 

@@ -1,16 +1,21 @@
 {
   "hexweb.iota.connection": "Connection[%s:%s]",
+  "hexweb.iota.response": "HTTPResponse{%s}",
 
   "mishap.hexweb.invalid_json_key": "The \"%s\" key is not present within the JsonIota!",
   "mishap.hexweb.cannot_json": "The %s iota has no direct Json translation!",
+  "mishap.hexweb.too_early": "You tried accessing a HTTP response before it arrived!",
   "hexcasting.mishap.invalid_value.class.connection": "a connection",
   "hexcasting.mishap.invalid_value.class.json": "a json object",
+  "hexcasting.mishap.invalid_value.class.response": "a HTTP response",
 
   "hexweb.entry.json_patterns": "JSON Patterns",
   "hexweb.page.json_patterns.entry": "These patterns were taken from a series of notes scrawled on the walls of the room of a Dougles Crockford shortly before their disappearence.$(br)$(br)They describe ways of creating and manipulating a dictionary-like object which uses Strings for keys and a select range of iotas as values. I wonder what the practical applications are...",
   "hexcasting.action.hexweb:create_json": "Jason's Reflection",
   "hexweb.page.json_patterns.create_json": "Creates an empty JSON object.",
-  "hexcasting.action.hexweb:get_element": "Jason's Purification",
+  "hexcasting.action.hexweb:has_element": "Jason's Purification",
+  "hexweb.page.json_patterns.has_element": "Checks whether the given JSON iota has the given key.",
+  "hexcasting.action.hexweb:get_element": "Jason's Purification II",
   "hexweb.page.json_patterns.get_element": "Gets the stored iota at the given key. Mishaps upon their being no iota.",
   "hexcasting.action.hexweb:set_element": "Jason's Exaltation",
   "hexweb.page.json_patterns.set_element": "Sets the given iota at the given key.",
@@ -19,6 +24,8 @@
   "hexweb.page.http_spells.entry": "While pondering the depths of one's mind, Sir Bernes-Lee caught a glimpse into another universe. With this view fresh in his mind, he quickly conjured a JSON object, imbued it with information, and sent it hurdling into the other universe.$(br)$(br)These are the patterns recovered after Berners-Lee was found dead having recieved enough information back to fry his mind.",
   "hexcasting.action.hexweb:request": "Request",
   "hexweb.page.http_spells.request": "Sends an HTTP request made of the given data and method to the provided connection's endpoint.",
+  "hexcasting.action.hexweb:parse_response": "Parse Response",
+  "hexweb.page.http_spells.parse_response": "Given a Response, attempt to parse the results. Will Mishap if too early or an IOException is thrown.",
 
   "hexweb.entry.connection_patterns": "Connection Patterns",
   "hexweb.page.connection_patterns.entry": "Have you ever gotten to a point where, when searching for something, after checking the most obvious places, you then start searching the most obscure, random places you can find.$(br)$(br)These patterns are the epitome of that. A search for parallel universes and the rips in the seams of Nature's domain. A guestimate if you will of where a rip will be.",
