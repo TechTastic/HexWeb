@@ -24,7 +24,7 @@
       "anchor": "hexweb:get_element",
       "input": "json, str",
       "output": "any",
-      "text": "hexweb.page.json_patterns.get_json"
+      "text": "hexweb.page.json_patterns.get_element"
     },
     {
       "type": "hexcasting:pattern",
@@ -32,7 +32,7 @@
       "anchor": "hexweb:set_element",
       "input": "json, str, any",
       "output": "json",
-      "text": "hexweb.page.json_patterns.set_json"
+      "text": "hexweb.page.json_patterns.set_element"
     }
   ]
 }

@@ -15,8 +15,8 @@
       "op_id": "hexweb:request",
       "anchor": "hexweb:request",
       "input": "conn, json, str, str",
-      "output": "resp",
-      "text": "hexweb.page.http_spells.create_json"
+      "output": "json",
+      "text": "hexweb.page.http_spells.request"
     }
   ]
 }
