@@ -33,3 +33,17 @@ mandatory = true
 versionRange = "[9.2.14,)"
 ordering = "AFTER"
 side = "BOTH"
+
+[[dependencies.hexweb]]
+modId = "hexcasting"
+mandatory = true
+versionRange = "[,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.hexweb]]
+modId = "moreiotas"
+mandatory = true
+versionRange = "[,)"
+ordering = "AFTER"
+side = "BOTH"
