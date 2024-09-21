@@ -1,16 +1,21 @@
 {
   "hexweb.iota.connection": "网络连接[%s:%s]",
+  "hexweb.iota.response": "HTTP响应{%s}",
 
   "mishap.hexweb.invalid_json_key": "JSON iota中没有“%s”键！",
   "mishap.hexweb.cannot_json": "Iota%s无法翻译为JSON！",
+  "mishap.hexweb.too_early": "试图在HTTP响应到达前访问！",
   "hexcasting.mishap.invalid_value.class.connection": "一个网络连接",
   "hexcasting.mishap.invalid_value.class.json": "一个JSON对象",
+  "hexcasting.mishap.invalid_value.class.response": "一个HTTP响应",
 
   "hexweb.entry.json_patterns": "JSON 图案",
   "hexweb.page.json_patterns.entry": "这些图案来自某位道格拉斯·克罗克福德失踪前不久在其房间的墙壁上涂画的一些文字。$(br)$(br)那些文字描述了如何创造与操纵一种类字典的对象；这种对象以字符串为键，以特定类型的 iota 为值。我在想这种 iota 有何实际用途……",
   "hexcasting.action.hexweb:create_json": "杰森之精思",
   "hexweb.page.json_patterns.create_json": "获取一个空 JSON 对象。",
-  "hexcasting.action.hexweb:get_element": "杰森之纯化",
+  "hexcasting.action.hexweb:has_element": "杰森之纯化",
+  "hexweb.page.json_patterns.has_element": "检验所给 JSON iota 有无给定键。",
+  "hexcasting.action.hexweb:get_element": "杰森之纯化，第二型",
   "hexweb.page.json_patterns.get_element": "根据所给键获取对应 iota。无对应 iota 时会招致事故。",
   "hexcasting.action.hexweb:set_element": "杰森之提整",
   "hexweb.page.json_patterns.set_element": "设置所给键对应的 iota。",
@@ -19,6 +24,8 @@
   "hexweb.page.http_spells.entry": "在思考意识的深度时，伯纳斯-李爵士偶尔看到了另一个宇宙的存在。说时迟那时快，他迅速构筑了一个 JSON 对象，向其中灌注了信息，再向那个宇宙发送了出去。$(br)$(br)这些图案是在伯纳斯-李被发现已死时回收得来的，他接收的信息多到烧坏了他的意识。",
   "hexcasting.action.hexweb:request": "请求",
   "hexweb.page.http_spells.request": "使用所给数据向所给网络连接端点发送 HTTP 请求。",
+  "hexcasting.action.hexweb:parse_response": "解析响应",
+  "hexweb.page.http_spells.parse_response": "接受一个 HTTP 响应并尝试解析。过早解析，或抛出 IOException 时会招致事故。",
 
   "hexweb.entry.connection_patterns": "网络连接图案",
   "hexweb.page.connection_patterns.entry": "你是否曾遇到过这种情况，在搜索某种东西时从最容易想到的地方开始，然后就一头扎进最隐秘、最不相干的地方去找？$(br)$(br)这些图案就是这种行为的典范，搜索平行宇宙，以及自然之域薄弱处的裂口。大可称其为“乱蒙”一个裂口所在处。",
