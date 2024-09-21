@@ -1,0 +1,35 @@
+modLoader = "kotlinforforge"
+loaderVersion = "[4,)"
+#issueTrackerURL = ""
+license = "MIT License"
+
+[[mods]]
+modId = "hexweb"
+version = "${version}"
+displayName = "HexWeb"
+authors = "TechTastic"
+description = '''
+A Hexcasting Addon for Web interaction!
+'''
+#logoFile = ""
+
+[[dependencies.hexweb]]
+modId = "forge"
+mandatory = true
+versionRange = "[47,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.hexweb]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.20.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.hexweb]]
+modId = "architectury"
+mandatory = true
+versionRange = "[9.2.14,)"
+ordering = "AFTER"
+side = "BOTH"

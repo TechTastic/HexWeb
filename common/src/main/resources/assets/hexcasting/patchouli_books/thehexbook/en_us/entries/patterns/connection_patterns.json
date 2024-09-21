@@ -1,0 +1,78 @@
+{
+  "name": "hexweb.entry.connection_patterns",
+  "category": "hexcasting:patterns",
+  "icon": "minecraft:calibrated_sculk_sensor",
+  "sortnum": 26,
+  "advancement": "hexcasting:root",
+  "read_by_default": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "hexweb.page.connection_patterns.entry"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexweb:create_connection/exal",
+      "anchor": "hexweb:create_connection/exal",
+      "input": "num, num, num, num, num",
+      "output": "conn",
+      "text": "hexweb.page.connection_patterns.create_connection.exal"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexweb:create_connection/dist",
+      "anchor": "hexweb:create_connection/dist",
+      "input": "str, num",
+      "output": "conn",
+      "text": "hexweb.page.connection_patterns.create_connection.dist"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexweb:create_connection/refl",
+      "anchor": "hexweb:create_connection/refl",
+      "input": "",
+      "output": "conn",
+      "text": "hexweb.page.connection_patterns.create_connection.refl"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexweb:get_connection_info/deco",
+      "anchor": "hexweb:get_connection_info/deco",
+      "input": "conn",
+      "output": "num, num, num, num, num",
+      "text": "hexweb.page.connection_patterns.get_connection_info.deco"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexweb:get_connection_info/disi",
+      "anchor": "hexweb:get_connection_info/disi",
+      "input": "conn",
+      "output": "str, num",
+      "text": "hexweb.page.connection_patterns.get_connection_info.disi"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexweb:set_host/exal",
+      "anchor": "hexweb:set_host/exal",
+      "input": "conn, num, num, num, num",
+      "output": "conn",
+      "text": "hexweb.page.connection_patterns.set_host.exal"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexweb:set_host/dist",
+      "anchor": "hexweb:set_host/dist",
+      "input": "conn, str",
+      "output": "conn",
+      "text": "hexweb.page.connection_patterns.set_host.dist"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "hexweb:set_port",
+      "anchor": "hexweb:set_port",
+      "input": "conn, num",
+      "output": "conn",
+      "text": "hexweb.page.connection_patterns.set_port"
+    }
+  ]
+}
