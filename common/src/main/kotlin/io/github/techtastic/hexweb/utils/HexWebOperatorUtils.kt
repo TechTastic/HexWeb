@@ -42,9 +42,13 @@ object HexWebOperatorUtils {
             val iota = this.get(idx)
             if (iota is ResponseIota) {
                 val either = responses[iota.getPayload()] ?: throw MishapTooEarly()
-                if (either.right().isPresent)
+                responses.remove(iota.getPayload())
+                if (either.right().isPresent) {
+                    responses.remove(iota.getPayload())
                     throw MishapIOException(either.right().get())
+                }
                 return try {
+                    responses.remove(iota.getPayload())
                     either.left().orElseThrow()
                 } catch (ignored: Exception) {
                     throw MishapTooEarly()
