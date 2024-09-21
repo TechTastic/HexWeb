@@ -39,7 +39,7 @@
       "op_id": "hexweb:get_connection_info/deco",
       "anchor": "hexweb:get_connection_info/deco",
       "input": "conn",
-      "output": "num, num, num, num, num",
+      "output": "str, num",
       "text": "hexweb.page.connection_patterns.get_connection_info.deco"
     },
     {
@@ -47,7 +47,7 @@
       "op_id": "hexweb:get_connection_info/disi",
       "anchor": "hexweb:get_connection_info/disi",
       "input": "conn",
-      "output": "str, num",
+      "output": "num, num, num, num, num",
       "text": "hexweb.page.connection_patterns.get_connection_info.disi"
     },
     {

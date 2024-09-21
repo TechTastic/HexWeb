@@ -19,8 +19,8 @@ class OpGetConnectionInfo(val type: Type): ConstMediaAction {
     override fun execute(args: List<Iota>, env: CastingEnvironment): List<Iota> {
         val conn = args.getConnection(0, argc)
         val result: MutableList<Iota> = when (type) {
-            Type.DECO -> conn.host.split(".").map { DoubleIota(it.toDouble()) }.toMutableList()
-            Type.DISI -> mutableListOf(StringIota.make(conn.host))
+            Type.DISI -> conn.host.split(".").map { DoubleIota(it.toDouble()) }.toMutableList()
+            Type.DECO -> mutableListOf(StringIota.make(conn.host))
         }
         result.add(DoubleIota(conn.port.toDouble()))
         return result
