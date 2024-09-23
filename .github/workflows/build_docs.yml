@@ -47,7 +47,7 @@ jobs:
     needs: hexdoc
     if: |-
       needs.hexdoc.outputs.release == 'true' &&
-      (github.event_name == 'push' github.event_name == 'workflow_dispatch' || inputs.publish == 'PyPI')
+      (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || inputs.publish == 'PyPI')
     environment:
       name: pypi
       url: https://pypi.org/p/${{ env.PYPI_PACKAGE }}
