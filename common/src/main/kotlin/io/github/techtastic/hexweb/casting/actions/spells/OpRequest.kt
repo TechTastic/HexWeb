@@ -3,19 +3,10 @@ package io.github.techtastic.hexweb.casting.actions.spells
 import at.petrak.hexcasting.api.casting.castables.ConstMediaAction
 import at.petrak.hexcasting.api.casting.eval.CastingEnvironment
 import at.petrak.hexcasting.api.casting.iota.Iota
-import com.google.gson.JsonObject
-import com.google.gson.JsonParser
-import io.github.techtastic.hexweb.HexWeb.JSON
-import io.github.techtastic.hexweb.HexWeb.client
-import io.github.techtastic.hexweb.HexWeb.queueRequest
-import io.github.techtastic.hexweb.casting.iota.JsonIota
+import io.github.techtastic.hexweb.HTTPRequestsHandler
 import io.github.techtastic.hexweb.casting.iota.ResponseIota
-import io.github.techtastic.hexweb.casting.mishap.MishapIOException
 import io.github.techtastic.hexweb.utils.HexWebOperatorUtils.getConnection
 import io.github.techtastic.hexweb.utils.HexWebOperatorUtils.getJsonObject
-import okhttp3.Request
-import okhttp3.RequestBody.Companion.toRequestBody
-import okio.IOException
 import ram.talia.moreiotas.api.getString
 import java.util.*
 
@@ -29,12 +20,8 @@ object OpRequest: ConstMediaAction {
         val method = args.getString(2, argc)
         val endpoint = args.getString(3, argc)
 
-        val body = json.toString().toRequestBody(JSON)
-        val request = Request.Builder()
-            .url("https://${conn.host}:${conn.port}/${endpoint}")
-            .method(method, body).build()
         val uuid = UUID.randomUUID()
-        queueRequest(uuid, request)
+        HTTPRequestsHandler.makeAndQueueRequest(uuid, json, conn, method, endpoint)
         return listOf(ResponseIota(uuid))
     }
 }
