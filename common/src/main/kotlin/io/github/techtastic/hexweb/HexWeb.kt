@@ -9,6 +9,7 @@ object HexWeb {
     fun init() {
         TickEvent.SERVER_PRE.register { server ->
             HTTPRequestsHandler.setup()
+            WebSocketHandler.setup()
         }
     }
 }

@@ -37,4 +37,8 @@ object HTTPRequestsHandler {
             }
         })
     }
+
+    fun getResponse(uuid: UUID) = this.responses[uuid]
+
+    fun clearResponse(uuid: UUID) = this.responses.remove(uuid)
 }
