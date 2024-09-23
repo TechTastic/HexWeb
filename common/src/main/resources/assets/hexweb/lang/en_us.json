@@ -18,7 +18,7 @@
   "hexcasting.action.hexweb:get_element": "Jason's Purification II",
   "hexweb.page.json_patterns.get_element": "Gets the stored iota at the given key. Mishaps upon their being no iota.",
   "hexcasting.action.hexweb:set_element": "Jason's Exaltation",
-  "hexweb.page.json_patterns.set_element": "Sets the given iota at the given key.",
+  "hexweb.page.json_patterns.set_element": "Sets the given iota at the given key. Setting a Garbage iota removes the key.",
 
   "hexweb.entry.http_spells": "HTTP Spells",
   "hexweb.page.http_spells.entry": "While pondering the depths of one's mind, Sir Bernes-Lee caught a glimpse into another universe. With this view fresh in his mind, he quickly conjured a JSON object, imbued it with information, and sent it hurdling into the other universe.$(br)$(br)These are the patterns recovered after Berners-Lee was found dead having recieved enough information back to fry his mind.",

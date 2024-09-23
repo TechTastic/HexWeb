@@ -1,6 +1,8 @@
 package io.github.techtastic.hexweb.utils
 
 import at.petrak.hexcasting.api.casting.iota.*
+import at.petrak.hexcasting.api.casting.math.HexDir
+import at.petrak.hexcasting.api.casting.math.HexPattern
 import at.petrak.hexcasting.api.casting.mishaps.MishapInvalidIota
 import at.petrak.hexcasting.api.casting.mishaps.MishapNotEnoughArgs
 import com.google.gson.*
@@ -11,6 +13,7 @@ import io.github.techtastic.hexweb.casting.iota.ResponseIota
 import io.github.techtastic.hexweb.casting.mishap.MishapCannotJson
 import io.github.techtastic.hexweb.casting.mishap.MishapIOException
 import io.github.techtastic.hexweb.casting.mishap.MishapTooEarly
+import net.minecraft.world.phys.Vec3
 import okhttp3.Response
 import okio.IOException
 import ram.talia.moreiotas.api.casting.iota.StringIota
@@ -49,7 +52,9 @@ object HexWebOperatorUtils {
                 }
                 return try {
                     responses.remove(iota.getPayload())
-                    either.left().orElseThrow()
+                    val response = either.left().orElseThrow()
+                    response.close()
+                    response
                 } catch (ignored: Exception) {
                     throw MishapTooEarly()
                 }
@@ -70,7 +75,20 @@ object HexWebOperatorUtils {
 
         if (this.isJsonArray) return ListIota(this.asJsonArray.map { it.toIota() })
 
-        return JsonIota(this.asJsonObject)
+        val json = this.asJsonObject
+        val vecKeys = listOf("x", "y", "z")
+        if (json.asMap().keys.containsAll(vecKeys) && json.asMap().filterKeys { s -> !vecKeys.contains(s) }.isEmpty())
+            return Vec3Iota(Vec3(json.get("x").asDouble, json.get("y").asDouble, json.get("z").asDouble))
+
+        val patternKeys = listOf("signature", "start_direction")
+        if (json.asMap().keys.containsAll(patternKeys) && json.asMap().filterKeys { s -> !patternKeys.contains(s) }.isEmpty())
+            return PatternIota(HexPattern.fromAngles(json.get("signature").asString, HexDir.fromString(json.get("start_direction").asString)))
+
+        val connKeys = listOf("host", "port")
+        if (json.asMap().keys.containsAll(connKeys) && json.asMap().filterKeys { s -> !connKeys.contains(s) }.isEmpty())
+            return ConnectionIota(json.get("host").asString, json.get("port").asInt)
+
+        return JsonIota(json)
     }
 
     fun Iota.toJson(): JsonElement {
@@ -82,6 +100,25 @@ object HexWebOperatorUtils {
         if (this is ListIota) {
             val json = JsonArray()
             this.list.forEach { json.add(it.toJson()) }
+            return json
+        }
+        if (this is Vec3Iota) {
+            val json = JsonObject()
+            json.addProperty("x", this.vec3.x)
+            json.addProperty("y", this.vec3.y)
+            json.addProperty("z", this.vec3.z)
+            return json
+        }
+        if (this is PatternIota) {
+            val json = JsonObject()
+            json.addProperty("signature", this.pattern.anglesSignature())
+            json.addProperty("start_direction", this.pattern.startDir.toString())
+            return json
+        }
+        if (this is ConnectionIota) {
+            val json = JsonObject()
+            json.addProperty("host", this.host)
+            json.addProperty("port", this.port)
             return json
         }
 
