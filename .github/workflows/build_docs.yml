@@ -37,7 +37,6 @@ jobs:
       release: |-
         ${{
           github.event_name != 'push' && inputs.release
-          || github.event_name == 'workflow_dispatch'
           || github.event_name == 'push' && startsWith(github.event.head_commit.message, '[Release]')
           || github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
         }}
