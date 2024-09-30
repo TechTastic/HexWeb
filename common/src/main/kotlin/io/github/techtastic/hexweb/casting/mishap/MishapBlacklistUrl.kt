@@ -7,10 +7,10 @@ import at.petrak.hexcasting.api.casting.mishaps.Mishap
 import at.petrak.hexcasting.api.pigment.FrozenPigment
 import net.minecraft.network.chat.Component
 
-class MishapInvalidJsonKey(val key: String): Mishap() {
+class MishapBlacklistUrl(val blacklist: String): Mishap() {
     override fun accentColor(ctx: CastingEnvironment, errorCtx: Context) = FrozenPigment.DEFAULT.get()
 
-    override fun errorMessage(ctx: CastingEnvironment, errorCtx: Context) = Component.translatable("hexweb.mishap.invalid_json_key", key)
+    override fun errorMessage(ctx: CastingEnvironment, errorCtx: Context) = Component.translatable("hexweb.mishap.blacklist_url", blacklist)
 
     override fun execute(env: CastingEnvironment, errorCtx: Context, stack: MutableList<Iota>) {
     }

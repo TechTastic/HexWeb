@@ -35,10 +35,18 @@ subprojects {
         maven {
             url = "https://maven.blamejared.com"
         }
+        maven {
+            url = "https://jitpack.io"
+        }
+        maven {
+            url = "https://maven.shedaniel.me/"
+        }
         mavenCentral()
     }
 
     dependencies {
+        implementation group: "org.jblas", name: "jblas", version: "1.2.5"
+
         implementation "com.squareup.okhttp3:okhttp:${okhttp_version}"
         implementation "com.squareup.okio:okio:${okio_version}"
         implementation "com.squareup.okio:okio-jvm:${okio_version}"

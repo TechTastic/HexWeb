@@ -7,7 +7,6 @@ import at.petrak.hexcasting.api.casting.mishaps.MishapInvalidIota
 import at.petrak.hexcasting.api.casting.mishaps.MishapNotEnoughArgs
 import com.google.gson.*
 import io.github.techtastic.hexweb.HTTPRequestsHandler
-import io.github.techtastic.hexweb.casting.iota.ConnectionIota
 import io.github.techtastic.hexweb.casting.iota.JsonIota
 import io.github.techtastic.hexweb.casting.iota.ResponseIota
 import io.github.techtastic.hexweb.casting.mishap.MishapCannotJson
@@ -18,16 +17,6 @@ import okhttp3.Response
 import ram.talia.moreiotas.api.casting.iota.StringIota
 
 object HexWebOperatorUtils {
-    fun List<Iota>.getConnection(idx: Int, argc: Int): ConnectionIota.Connection {
-        if (idx >= 0 && idx <= this.lastIndex) {
-            val iota = this.get(idx)
-            if (iota is ConnectionIota)
-                return iota.getPayload()
-            throw MishapInvalidIota.ofType(iota, if (argc == 0) idx else argc - (idx + 1), "connection")
-        }
-        throw MishapNotEnoughArgs(idx + 1, this.size)
-    }
-
     fun List<Iota>.getJsonObject(idx: Int, argc: Int): JsonObject {
         if (idx >= 0 && idx <= this.lastIndex) {
             val iota = this.get(idx)
@@ -49,7 +38,6 @@ object HexWebOperatorUtils {
                 }
                 return try {
                     val response = either.left().orElseThrow()
-                    response.close()
                     HTTPRequestsHandler.clearResponse(iota.getPayload())
                     response
                 } catch (ignored: Exception) {
@@ -81,10 +69,6 @@ object HexWebOperatorUtils {
         if (json.asMap().keys.containsAll(patternKeys) && json.asMap().filterKeys { s -> !patternKeys.contains(s) }.isEmpty())
             return PatternIota(HexPattern.fromAngles(json.get("signature").asString, HexDir.fromString(json.get("start_direction").asString)))
 
-        val connKeys = listOf("host", "port")
-        if (json.asMap().keys.containsAll(connKeys) && json.asMap().filterKeys { s -> !connKeys.contains(s) }.isEmpty())
-            return ConnectionIota(json.get("host").asString, json.get("port").asInt)
-
         return JsonIota(json)
     }
 
@@ -110,12 +94,6 @@ object HexWebOperatorUtils {
             val json = JsonObject()
             json.addProperty("signature", this.pattern.anglesSignature())
             json.addProperty("start_direction", this.pattern.startDir.toString())
-            return json
-        }
-        if (this is ConnectionIota) {
-            val json = JsonObject()
-            json.addProperty("host", this.host)
-            json.addProperty("port", this.port)
             return json
         }
 

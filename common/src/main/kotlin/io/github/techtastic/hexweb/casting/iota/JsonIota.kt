@@ -10,6 +10,7 @@ import net.minecraft.nbt.CompoundTag
 import net.minecraft.nbt.Tag
 import net.minecraft.network.chat.Component
 import net.minecraft.server.level.ServerLevel
+import ram.talia.moreiotas.api.casting.iota.StringIota
 
 class JsonIota(val json: JsonObject): Iota(HexWebIotaTypes.JSON.get(), json) {
     fun getPayload() = this.json
@@ -23,6 +24,15 @@ class JsonIota(val json: JsonObject): Iota(HexWebIotaTypes.JSON.get(), json) {
         val tag = CompoundTag()
         tag.putString("hexweb\$json", this.json.toString())
         return tag
+    }
+
+    override fun subIotas(): MutableIterable<Iota> {
+        val sub = mutableListOf<Iota>()
+        this.json.asMap().forEach { (key, value) ->
+            sub.add(StringIota.make(key))
+            sub.add(value.toIota())
+        }
+        return sub
     }
 
     companion object {

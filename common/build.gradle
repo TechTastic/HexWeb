@@ -2,6 +2,13 @@ architectury {
     common rootProject.enabled_platforms.split(',')
 }
 
+repositories {
+    maven {
+        name = "Fuzs Mod Resources"
+        url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
+    }
+}
+
 dependencies {
     // We depend on Fabric Loader here to use the Fabric @Environment annotations,
     // which get remapped to the correct annotations on each platform.
@@ -15,4 +22,6 @@ dependencies {
     modCompileOnly "at.petra-k.hexcasting:hexcasting-common-${minecraft_version}:${hexcasting_version}"
 
     modCompileOnly files("${rootProject.rootDir}/libs/moreiotas-common-1.20.1-0.1.0-3.jar")
+
+    modApi "fuzs.forgeconfigapiport:forgeconfigapiport-common:8.0.0"
 }

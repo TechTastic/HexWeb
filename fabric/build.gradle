@@ -31,11 +31,15 @@ repositories {
     }
     maven {
         name = 'GeckoLib'
-        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+        url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
         content {
             includeGroupByRegex("software\\.bernie.*")
             includeGroup("com.eliotlash.mclib")
         }
+    }
+    maven {
+        name = "Fuzs Mod Resources"
+        url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
     }
 }
 
@@ -67,6 +71,8 @@ dependencies {
     include(implementation "com.squareup.okhttp3:okhttp:${okhttp_version}")
     include(implementation "com.squareup.okio:okio:${okio_version}")
     include(implementation "com.squareup.okio:okio-jvm:${okio_version}")
+
+    modImplementation "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:8.0.0"
 }
 
 processResources {

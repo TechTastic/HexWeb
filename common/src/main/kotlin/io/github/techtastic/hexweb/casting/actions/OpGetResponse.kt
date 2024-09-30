@@ -8,7 +8,7 @@ import com.google.gson.JsonParser
 import io.github.techtastic.hexweb.casting.iota.JsonIota
 import io.github.techtastic.hexweb.utils.HexWebOperatorUtils.getResponse
 
-object OpParseResponse: ConstMediaAction {
+object OpGetResponse: ConstMediaAction {
     override val argc: Int
         get() = 1
 
@@ -17,7 +17,9 @@ object OpParseResponse: ConstMediaAction {
 
         val json = JsonObject()
         json.addProperty("code", response.code)
+        json.addProperty("message", response.message)
         json.add("body", JsonParser.parseString(response.body?.string() ?: "{}"))
+        response.close()
         return listOf(JsonIota(json))
     }
 }

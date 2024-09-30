@@ -2,7 +2,8 @@ package io.github.techtastic.hexweb
 
 import com.google.gson.JsonObject
 import com.mojang.datafixers.util.Either
-import io.github.techtastic.hexweb.casting.iota.ConnectionIota
+import io.github.techtastic.hexweb.casting.mishap.MishapBlacklistUrl
+import io.github.techtastic.hexweb.config.HexWebConfig
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.*
@@ -16,18 +17,25 @@ object HTTPRequestsHandler {
     val JSON = "application/json; charset=utf-8".toMediaTypeOrNull()
 
     fun setup() {
-        this.client = OkHttpClient.Builder().build()
+        this.client = OkHttpClient()
     }
 
-    fun makeAndQueueRequest(uuid: UUID, body: JsonObject, conn: ConnectionIota.Connection, method: String, endpoint: String) {
-        val request = Request.Builder().url("https://${conn.host}:${conn.port}/${endpoint}")
-            .method(method, if (HttpMethod.permitsRequestBody(method) || HttpMethod.requiresRequestBody(method))
-                body.toString().toRequestBody(JSON) else null).build()
-        queueRequest(uuid, request)
+    fun makeAndQueueRequest(uuid: UUID, url: String, headers: List<String>, method: String, body: JsonObject) {
+        HexWebConfig.ADDRESS_BLACKLIST.get().forEach { blacklist ->
+            if (url.contains(blacklist)) throw MishapBlacklistUrl(blacklist)
+        }
+
+        var builder = Request.Builder().url(url)
+            .method(method, if (HttpMethod.permitsRequestBody(method)) body.toString().toRequestBody(JSON) else null)
+
+        headers.map { s -> s.split(":") }.forEach { header -> builder = builder.addHeader(header.first(), header.last()) }
+
+        queueRequest(uuid, builder.build())
     }
 
     fun queueRequest(uuid: UUID, req: Request) {
-        client?.newCall(req)?.enqueue(object: Callback {
+        if (this.client == null) this.client = OkHttpClient()
+        client!!.newCall(req).enqueue(object: Callback {
             override fun onFailure(call: Call, e: IOException) {
                 responses[uuid] = Either.right(e)
             }

@@ -13,47 +13,15 @@ object HexWebActions {
     private val ACTIONS = DeferredRegister.create(MOD_ID, HexRegistries.ACTION)
 
 
-    // Connection
-
-    val CREATE_CONNECTION_EXAL = ACTIONS.register("create_connection/exal") { ActionRegistryEntry(
-        HexPattern.fromAngles("qqqqwwwaqawwwqqqqwwwaqaww", HexDir.NORTH_EAST),
-        OpCreateConnection(OpCreateConnection.Type.EXAL)
-    )}
-    val CREATE_CONNECTION_DIST = ACTIONS.register("create_connection/dist") { ActionRegistryEntry(
-        HexPattern.fromAngles("qqqqwwewwqqqqwwwaqaww", HexDir.NORTH_EAST),
-        OpCreateConnection(OpCreateConnection.Type.DIST)
-    )}
-    val CREATE_CONNECTION_REFL = ACTIONS.register("create_connection/refl") { ActionRegistryEntry(
-        HexPattern.fromAngles("qqqqwwewwqqqqwwew", HexDir.NORTH_EAST),
-        OpCreateConnection(OpCreateConnection.Type.REFL)
-    )}
-    val GET_CONNECTION_INFO_DECO = ACTIONS.register("get_connection_info/deco") { ActionRegistryEntry(
-        HexPattern.fromAngles("qqqqweqqqqqd", HexDir.NORTH_EAST),
-        OpGetConnectionInfo(OpGetConnectionInfo.Type.DECO)
-    )}
-    val GET_CONNECTION_INFO_DISI = ACTIONS.register("get_connection_info/disi") { ActionRegistryEntry(
-        HexPattern.fromAngles("qqqqwwedew", HexDir.NORTH_EAST),
-        OpGetConnectionInfo(OpGetConnectionInfo.Type.DISI)
-    )}
-    val SET_HOST_EXAL = ACTIONS.register("set_host/exal") { ActionRegistryEntry(
-        HexPattern.fromAngles("qqqqwqeeeeew", HexDir.NORTH_EAST),
-        OpSetHost(OpSetHost.Type.EXAL)
-    )}
-    val SET_HOST_DIST = ACTIONS.register("set_host/dist") { ActionRegistryEntry(
-        HexPattern.fromAngles("qqqqweqaqe", HexDir.NORTH_EAST),
-        OpSetHost(OpSetHost.Type.DIST)
-    )}
-    val SET_PORT = ACTIONS.register("set_port") { ActionRegistryEntry(
-        HexPattern.fromAngles("qqqqwaqa", HexDir.NORTH_EAST),
-        OpSetPort
-    )}
-
-
     // JSON
 
     val CREATE_JSON = ACTIONS.register("create_json") { ActionRegistryEntry(
         HexPattern.fromAngles("edade", HexDir.NORTH_WEST),
         OpCreateJson
+    )}
+    val PARSE_JSON = ACTIONS.register("parse_json") { ActionRegistryEntry(
+        HexPattern.fromAngles("edadeqdwedw", HexDir.NORTH_WEST),
+        OpParseJson
     )}
     val SET_ELEMENT = ACTIONS.register("set_element") { ActionRegistryEntry(
         HexPattern.fromAngles("edadedaa", HexDir.NORTH_WEST),
@@ -75,9 +43,9 @@ object HexWebActions {
         HexPattern.fromAngles("qqqqwqdqddqe", HexDir.NORTH_EAST),
         OpRequest
     )}
-    val PARSE_RESPONSE = ACTIONS.register("parse_response") { ActionRegistryEntry(
+    val GET_RESPONSE = ACTIONS.register("get_response") { ActionRegistryEntry(
         HexPattern.fromAngles("qqqqwweaaead", HexDir.NORTH_EAST),
-        OpParseResponse
+        OpGetResponse
     )}
 
 
